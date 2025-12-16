@@ -5,6 +5,7 @@ from utils.request_handler import RequestHandler
 from apis.auth import AuthAPI
 from apis.contentAccess import ContentAccessAPI
 from apis.user import UserAPI
+from apis.ContentPublishing import ContentPublishingAPI
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +21,7 @@ class MFunsClient:
         self.auth = AuthAPI(self.request_handler, self.token_manager)
         self.content = ContentAccessAPI(self.request_handler)
         self.user = UserAPI(self.request_handler)
+        self.content_publishing = ContentPublishingAPI(self.request_handler)
         
         # 如果有保存的token，自动设置
         self._load_saved_token()

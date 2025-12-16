@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from config import Config
 from api_manager import APIManager
 from ui.manager import UIManager
-from params.collectors import ParamCollectorFactory
+from params.collector_factory import ParamCollectorFactory
 
 class MainApp:
     """主应用程序"""

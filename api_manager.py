@@ -36,7 +36,14 @@ class APIManager:
                 "apis": [
                     ("获取用户信息", self._test_get_user_info, "获取当前用户信息"),
                 ]
+            },
+            "文章模块": {  # 新增文章模块
+                "description": "文章管理相关接口",
+                "apis": [
+                    ("更新文章", self._test_update_article, "创建或更新文章"),
+                ]
             }
+            
         }
     
     def list_api_modules(self) -> List[str]:
@@ -151,3 +158,14 @@ class APIManager:
         
         self.api_modules[module_name]["apis"].append((api_name, api_func, description))
         logger.info(f"已添加自定义API: {module_name}/{api_name}")
+
+        # api_manager.py 中添加以下方法
+    def _test_update_article(self, **kwargs) -> Dict[str, Any]:
+        """测试更新文章"""        
+        result = self.client.content_publishing.update_article(**kwargs)
+        return {
+            "success": result["success"],
+            "code": result["data"].get("code"),
+            "message": result["data"].get("msg", ""),
+            "article_info": result["data"].get("data", {})
+        }
